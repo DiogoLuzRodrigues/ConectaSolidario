@@ -1,0 +1,57 @@
+body{
+  margin:0;
+}
+
+/* MENU*/
+.menu{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #111;
+    padding: 1px 30px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.menu ul{
+    display: flex;
+    gap: 30px;
+    list-style: none;
+}
+.menu a{
+    color: cyan;
+    text-decoration: none;
+}
+/* TITULO INICIAL DA PAGINA */
+.Titulo{
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ background: linear-gradient(to left, #6e8fc2, #40eff5);
+ background-clip: text;
+ -webkit-background-clip: text;
+ -webkit-text-fill-color: transparent;
+}
+
+/*CRIADOR FINAL DA PAGINA*/
+.criador{
+  float:center;
+  background: #111;
+  padding: 0,5% 30px;
+}
+.autor{
+  color: rgb(6, 242, 250);
+  font-size: medium;
+  font-weight: bold;
+}
+.autor2{
+  color: rgb(6, 242, 250);
+  font:bold;
+  font-size: medium;
+}
+.foto-anuncio{
+    width: 100%;
+    max-width: 300px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}

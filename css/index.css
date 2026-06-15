@@ -1,0 +1,89 @@
+body{
+  margin:0;
+}
+
+/* MENU*/
+.menu{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #111;
+    padding: 1px 30px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.menu ul{
+    display: flex;
+    gap: 30px;
+    list-style: none;
+}
+.menu a{
+    color: cyan;
+    text-decoration: none;
+}
+/* TITULO INICIAL DA PAGINA */
+.Titulo{
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ background: linear-gradient(to left, #dd2222, #40eff5);
+ background-clip: text;
+ -webkit-background-clip: text;
+ -webkit-text-fill-color: transparent;
+ font-size: 80px;
+}
+
+/*IMAGEM DA PAGINA*/
+.imagem{
+  margin-left: 3%;
+  width: 400px;
+}
+/*MAIN SECUNDARIO*/
+.main_secundario{
+   display: flex;
+   align-items: center;
+   justify-content: space-around;
+}
+/*TEXTO DA PAGINA INDEX*/
+.texto{
+  display: flex;
+  justify-content: flex-end;
+  width: 300px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 25px;
+  font-style: italic;
+  font-weight: bold;
+  background: linear-gradient(to left, #0c0c0c, #080808);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+/*TEXTO DA PAGINA INDEX FINAL*/
+.texto_final{
+  margin-left: 3%;
+  margin-right: 3%;
+  font-size: 20px;
+  font-family: "Montserrat", sans-serif;
+  text-align: justify;
+  font-weight: bold;
+  font-style: italic;
+  background: linear-gradient(to left, #f50303, #40eff5);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+/*CRIADOR FINAL DA PAGINA*/
+.criador{
+  float:center;
+  background: #111;
+  padding: 0,5% 30px;
+}
+.autor{
+  color: rgb(6, 242, 250);
+  font-size: medium;
+  font-weight: bold;
+}
+.autor2{
+  color: rgb(6, 242, 250);
+  font:bold;
+  font-size: medium;
+}

@@ -1,0 +1,208 @@
+body{
+  margin:0;
+}
+
+/* MENU*/
+.menu{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #111;
+    padding: 1px 30px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.menu ul{
+    display: flex;
+    gap: 30px;
+    list-style: none;
+}
+.menu a{
+    color: cyan;
+    text-decoration: none;
+}
+/* TITULO INICIAL DA PAGINA */
+.Titulo{
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ background: linear-gradient(to left, #6e8fc2, #40eff5);
+ background-clip: text;
+ -webkit-background-clip: text;
+ -webkit-text-fill-color: transparent;
+}
+
+/*CRIADOR FINAL DA PAGINA*/
+.criador{
+  float:center;
+  background: #111;
+  padding: 0,5% 30px;
+}
+.autor{
+  color: rgb(6, 242, 250);
+  font-size: medium;
+  font-weight: bold;
+}
+.autor2{
+  color: rgb(6, 242, 250);
+  font:bold;
+  font-size: medium;
+}
+/*-------------------------------------------------------*/
+/* RESET */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* CORPO */
+body{
+    background: #f4f6f9;
+    min-height: 100vh;
+}
+
+/* MENU */
+.menu{
+    background: #000;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+}
+
+.menu a{
+    color: #00e5ff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.menu a:hover{
+    color: white;
+}
+
+.menu ul{
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+/* TÍTULO */
+.Titulo{
+    text-align: center;
+    margin: 25px 0;
+    color: #4db6e7;
+    font-size: 40px;
+}
+
+/* FORMULÁRIO */
+.cadastro_secundario{
+    max-width: 1000px;
+    margin: auto;
+    background: white;
+    padding: 35px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+}
+
+.cadastro_secundario h2{
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+/* ORGANIZAÇÃO DOS CAMPOS */
+.form-row{
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.form-row input{
+    flex: 1;
+}
+
+/* INPUTS */
+input{
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+input:focus{
+    outline: none;
+    border-color: #4db6e7;
+    box-shadow: 0 0 8px rgba(77,182,231,0.5);
+}
+
+/* BOTÃO */
+button{
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 8px;
+    background: #4db6e7;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover{
+    background: #2196f3;
+    transform: translateY(-2px);
+}
+
+/* MENSAGEM */
+#mensagem-cadastro{
+    text-align: center;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+/* RODAPÉ */
+.criador{
+    margin-top: 40px;
+    background: #000;
+    text-align: center;
+    padding: 15px;
+}
+
+.autor{
+    color: white;
+    font-size: 18px;
+}
+
+.autor2{
+    color: #00e5ff;
+}
+
+/* RESPONSIVO */
+@media(max-width: 768px){
+
+    .form-row{
+        flex-direction: column;
+    }
+
+    .Titulo{
+        font-size: 30px;
+    }
+
+    .cadastro_secundario{
+        margin: 20px;
+    }
+}
+#cep{
+    width: 50%;
+}
+
+.cep-row button{
+    width: 180px;
+    margin-top: 0;
+}

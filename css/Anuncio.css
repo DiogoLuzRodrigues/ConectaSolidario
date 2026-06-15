@@ -1,0 +1,84 @@
+body{
+  margin:0;
+}
+
+/* MENU*/
+.menu{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #111;
+    padding: 1px 30px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.menu ul{
+    display: flex;
+    gap: 30px;
+    list-style: none;
+}
+.menu a{
+    color: cyan;
+    text-decoration: none;
+}
+/* TITULO INICIAL DA PAGINA */
+.Titulo{
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ background: linear-gradient(to left, #6e8fc2, #40eff5);
+ background-clip: text;
+ -webkit-background-clip: text;
+ -webkit-text-fill-color: transparent;
+ font-size: 80px;
+}
+/*TITULO SECUNDARIO*/
+.titulo_secundario{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/*FORMULARIO DO ANUNCIO*/
+.anuncio_preencher{
+    width: 80%;
+    max-width: 800px;
+    margin: 0 auto; /* centraliza horizontalmente */
+    padding: 20px;
+}
+.btn-registrar{
+    display: block;
+    margin: 20px auto;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+.titulo_preencher{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 30%;
+}
+.descricao_preencher{
+  display: flex;
+  font-size: 50px;
+}
+/*CRIADOR FINAL DA PAGINA*/
+.criador{
+  float:center;
+  background: #111;
+  padding: 0,5% 30px;
+}
+.autor{
+  color: rgb(6, 242, 250);
+  font-size: medium;
+  font-weight: bold;
+}
+.autor2{
+  color: rgb(6, 242, 250);
+  font:bold;
+  font-size: medium;
+}
