@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="./css/Cadastro.css">
+</head>
+<body>
+
+    <!-- CABEÇALHO -->
+    <header>
+        <nav class="menu">
+            <a href="index.html">Início</a>
+            <a href="Anuncios.html">Anúncios</a>
+
+            <ul>
+                <li><a href="Anuncio.html">Anunciar</a></li>
+                <li><a href="MeusAnuncios.html">Meus Anúncios</a></li>
+            </ul>
+        </nav>
+
+        <h2 class="Titulo">Conecta Solidário</h2>
+    </header>
+
+    <!-- FORMULÁRIO -->
+    <main>
+        <div class="cadastro_secundario">
+
+            <h2>Cadastro de Usuário</h2>
+
+            <div class="form-row">
+                <input type="text" id="nome" placeholder="Nome Completo" required>
+                <input type="text" id="cpf" placeholder="CPF" required>
+            </div>
+
+            <div class="form-row">
+                <input type="date" id="nascimento" required>
+                <input type="email" id="email" placeholder="E-mail" required>
+            </div>
+
+            <div class="form-row">
+                <input type="password" id="senha" placeholder="Senha" required>
+                <input type="password" id="confirmarSenha" placeholder="Confirmar Senha" required>
+            </div>
+
+            <div class="form-row cep-row">
+               <input type="text" id="cep" placeholder="CEP" maxlength="8">
+               <button type="button" onclick="buscarCEP()">Buscar CEP</button>
+            </div>
+
+            <div class="form-row">
+                <input type="text" id="endereco" placeholder="Endereço">
+                <input type="text" id="numero" placeholder="Número">
+            </div>
+
+            <div class="form-row">
+                <input type="text" id="complemento" placeholder="Complemento (Opcional)">
+                <input type="text" id="bairro" placeholder="Bairro">
+            </div>
+
+            <div class="form-row">
+                <input type="text" id="cidade" placeholder="Cidade">
+                <input type="text" id="estado" placeholder="Estado">
+            </div>
+
+            <div class="form-row">
+                <input type="tel" id="telefone" placeholder="Telefone / WhatsApp">
+            </div>
+
+            <button type="button" onclick="cadastrarUsuario()">
+                Cadastrar
+            </button>
+
+            <p id="mensagem-cadastro"></p>
+
+        </div>
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer class="criador">
+        <h2 class="autor">
+            Criado por <span class="autor2">Diogo da Luz Rodrigues</span>
+        </h2>
+    </footer>
+
+    <script>
+
+        async function buscarCEP() {
+
+            const cep = document.getElementById("cep").value.replace(/\D/g, "");
+
+            if (cep.length !== 8) {
+                alert("Digite um CEP válido!");
+                return;
+            }
+
+            try {
+
+                const resposta = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+                const dados = await resposta.json();
+
+                if (dados.erro) {
+                    alert("CEP não encontrado!");
+                    return;
+                }
+
+                document.getElementById("endereco").value = dados.logradouro;
+                document.getElementById("bairro").value = dados.bairro;
+                document.getElementById("cidade").value = dados.localidade;
+                document.getElementById("estado").value = dados.uf;
+
+            } catch (erro) {
+                alert("Erro ao consultar CEP.");
+            }
+        }
+
+        function cadastrarUsuario() {
+
+            const nome = document.getElementById("nome").value.trim();
+            const cpf = document.getElementById("cpf").value.trim();
+            const nascimento = document.getElementById("nascimento").value;
+            const email = document.getElementById("email").value.trim();
+            const senha = document.getElementById("senha").value;
+            const confirmarSenha = document.getElementById("confirmarSenha").value;
+            const cep = document.getElementById("cep").value;
+            const endereco = document.getElementById("endereco").value;
+            const numero = document.getElementById("numero").value;
+            const complemento = document.getElementById("complemento").value;
+            const bairro = document.getElementById("bairro").value;
+            const cidade = document.getElementById("cidade").value;
+            const estado = document.getElementById("estado").value;
+            const telefone = document.getElementById("telefone").value;
+
+            if (
+                !nome ||
+                !cpf ||
+                !nascimento ||
+                !email ||
+                !senha ||
+                !confirmarSenha
+            ) {
+                document.getElementById("mensagem-cadastro").innerHTML =
+                    "❌ Preencha todos os campos obrigatórios!";
+                return;
+            }
+
+            if (senha !== confirmarSenha) {
+                document.getElementById("mensagem-cadastro").innerHTML =
+                    "❌ As senhas não coincidem!";
+                return;
+            }
+
+            const usuario = {
+                nome,
+                cpf,
+                nascimento,
+                email,
+                senha,
+                cep,
+                endereco,
+                numero,
+                complemento,
+                bairro,
+                cidade,
+                estado,
+                telefone
+            };
+
+            localStorage.setItem("usuario", JSON.stringify(usuario));
+
+            document.getElementById("mensagem-cadastro").innerHTML =
+                "✅ Cadastro realizado com sucesso!";
+
+            setTimeout(() => {
+                window.location.href = "Login.html";
+            }, 2000);
+        }
+
+    </script>
+
+</body>
+</html>

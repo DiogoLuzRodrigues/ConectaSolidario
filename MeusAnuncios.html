@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="imagens/icon solidario.png" type="solidario">
+
+    <title>Meus Anúncios</title>
+    <link rel="stylesheet" href="./css/MeusAnuncios.css">
+</head>
+<body>
+    <!--CABEÇALHO-->
+  <header>
+    <nav class="menu">
+        <a href="index.html">Inicio</a>
+        <a href="Anuncios.html">Anuncios</a>
+        <ul>
+            <li><a href="Login.html">Login</a></li>
+            <li><a href="Anuncio.html">Anunciar</a></li>        
+        </ul>
+    </nav>
+    <h2 class="Titulo">Conecta Solidário  <span></span></h2>
+  </header>
+  <main>
+    <fieldset>
+      <div id="resultado"></div>  
+      <script>
+const doacoes = JSON.parse(localStorage.getItem("doacoes")) || [];
+
+let html = "";
+
+if(doacoes.length > 0){
+
+    doacoes.forEach(doacao => {
+
+        html += `
+            <div class="card-anuncio">
+
+                <img src="${doacao.imagem}" class="foto-anuncio">
+
+                <h2>${doacao.titulo}</h2>
+
+                <p><strong>Descrição:</strong> ${doacao.descricao}</p>
+
+                <p><strong>Cidade:</strong> ${doacao.cidade}</p>
+
+                <p><strong>Rua:</strong> ${doacao.rua}</p>
+
+                <p><strong>Número:</strong> ${doacao.numero}</p>
+
+                <p><strong>Contato:</strong> ${doacao.contato}</p>
+
+            </div>
+        `;
+    });
+
+    document.getElementById("resultado").innerHTML = html;
+
+} else {
+
+    document.getElementById("resultado").innerHTML =
+    "<p>Nenhuma doação encontrada.</p>";
+
+}
+</script>
+    </fieldset>
+  </main>
+  <header class="criador">
+    <h2 class="autor">Criado por  <span class="autor2">Diogo da Luz Rodrigues</span></h2>   
+   </header>
+    
+</body>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="imagens/icon solidario.png" type="solidario">
+
+    <title>Anunciar</title>
+    <link rel="stylesheet" href="./css/Anuncio.css">
+</head>
+<body>
+    <!--CABEÇALHO-->
+  <header>
+    <nav class="menu">
+        <a href="index.html">Inicio</a>
+        <a href="Anuncios.html">Anuncios</a>
+        <ul>
+            <li><a href="Login.html">Login</a></li>
+            <li><a href="MeusAnuncios.html">Meus Anúncios</a></li>            
+        </ul>
+    </nav>
+    <h2 class="Titulo">Conecta Solidário  <span></span></h2>
+  </header>
+  <main>
+    <form id="formDoacao" action="">
+    <h1 class="titulo_secundario">O que você está anunciando?</h1>
+
+    <fieldset class="anuncio_preencher">
+
+        <input type="text" placeholder="Título" class="titulo_preencher" required><br><br>
+
+        <input type="text" placeholder="Descrição" class="descricao_preencher" required><br><br>
+
+        <label>Data e Hora do Registro:</label>
+        <input type="datetime-local" name="data" required><br><br>
+
+        <label for="tipodoacao">Escolha o tipo de doação:</label>
+        <select id="tipodoacao" name="tipo" required>
+            <option value="roupas">Roupas</option>
+            <option value="brinquedos">Brinquedos</option>
+            <option value="moveis">Móveis</option>
+            <option value="eletronicos">Eletrônicos</option>
+        </select>
+        <br><br>
+
+        <label for="fotos">Escolha as fotos:</label>
+        <input type="file" id="fotos" name="fotos" accept="image/*" multiple>
+        <br><br>
+
+        <label for="cep">CEP:</label>
+        <input type="text" id="cep" placeholder="Digite o CEP">
+
+        <button type="button" onclick="buscarCEP()">
+            Buscar CEP
+        </button>
+
+        <button type="button" onclick="obterLocalizacao()">
+            Usar minha localização
+        </button>
+
+        <br><br>
+
+        <input type="text" id="cidade" placeholder="Cidade" readonly>
+        <input type="text" id="rua" placeholder="Rua" readonly>
+        <input type="text" id="numero" placeholder="Digite o número">
+
+        <br><br>
+
+        <label for="contato">Telefone / WhatsApp:</label>
+        <input
+            type="tel"
+            id="contato"
+            placeholder="(00) 00000-0000"
+            maxlength="15"
+            required
+        >
+
+        <br><br>
+
+        <button type="submit" class="btn-registrar">
+            Registrar Doação
+        </button>
+
+    </fieldset>
+</form>
+
+<script>
+    // Busca pelo CEP
+    async function buscarCEP() {
+        const cep = document.getElementById("cep").value.replace(/\D/g, "");
+
+        if (cep.length !== 8) {
+            alert("Digite um CEP válido!");
+            return;
+        }
+
+        try {
+            const resposta = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+            const dados = await resposta.json();
+
+            if (dados.erro) {
+                alert("CEP não encontrado!");
+                return;
+            }
+
+            document.getElementById("cidade").value = dados.localidade;
+            document.getElementById("rua").value = dados.logradouro;
+            document.getElementById("numero").value = "";
+        } catch (erro) {
+            alert("Erro ao buscar CEP.");
+        }
+    }
+
+    // Usa a localização atual
+    async function obterLocalizacao() {
+        if (navigator.geolocation) {
+
+            navigator.geolocation.getCurrentPosition(
+                async function (posicao) {
+
+                    const latitude = posicao.coords.latitude;
+                    const longitude = posicao.coords.longitude;
+
+                    try {
+                        const resposta = await fetch(
+                            `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`
+                        );
+
+                        const dados = await resposta.json();
+
+                        document.getElementById("cidade").value =
+                            dados.address.city ||
+                            dados.address.town ||
+                            dados.address.village ||
+                            "";
+
+                        document.getElementById("rua").value =
+                            dados.address.road || "";
+
+                        document.getElementById("numero").value =
+                            dados.address.house_number || "";
+
+                    } catch (erro) {
+                        alert("Erro ao obter endereço.");
+                    }
+                },
+                function () {
+                    alert("Não foi possível obter sua localização.");
+                }
+            );
+
+        } else {
+            alert("Geolocalização não suportada.");
+        }
+    }
+
+    // Máscara para telefone
+    document.getElementById("contato").addEventListener("input", function (e) {
+        let valor = e.target.value.replace(/\D/g, "");
+
+        valor = valor.replace(/^(\d{2})(\d)/g, "($1) $2");
+        valor = valor.replace(/(\d{5})(\d)/, "$1-$2");
+
+        e.target.value = valor;
+    });
+</script>
+  </main>
+
+    <script>
+   document.getElementById("formDoacao").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const arquivo = document.getElementById("fotos").files[0];
+
+    const reader = new FileReader();
+
+    reader.onload = function() {
+
+        const doacao = {
+            titulo: document.querySelector(".titulo_preencher").value,
+            descricao: document.querySelector(".descricao_preencher").value,
+            cidade: document.getElementById("cidade").value,
+            rua: document.getElementById("rua").value,
+            numero: document.getElementById("numero").value,
+            contato: document.getElementById("contato").value,
+            imagem: reader.result
+        };
+
+       // localStorage.setItem("doacao", JSON.stringify(doacao));
+       
+        let doacoes = JSON.parse(localStorage.getItem("doacoes")) || [];
+        doacoes.push(doacao);
+        localStorage.setItem("doacoes", JSON.stringify(doacoes));
+
+        window.location.href = "Anuncios.html";
+    };
+
+    if (arquivo) {
+        reader.readAsDataURL(arquivo);
+    } else {
+        alert("Selecione uma imagem.");
+    }
+});
+</script>
+ 
+  <header class="criador">
+    <h2 class="autor">Criado por  <span class="autor2">Diogo da Luz Rodrigues</span></h2>   
+   </header>
+    
+</body>
+</html>

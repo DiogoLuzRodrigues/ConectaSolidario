@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="imagens/icon solidario.png" type="image/png">
+
+    <title>Login</title>
+    <link rel="stylesheet" href="./css/Login.css">
+</head>
+<body>
+
+    <!-- CABEÇALHO -->
+    <header>
+        <nav class="menu">
+            <a href="index.html">Início</a>
+            <a href="Anuncios.html">Anúncios</a>
+
+            <ul>
+                <li><a href="Anuncio.html">Anunciar</a></li>
+                <li><a href="MeusAnuncios.html">Meus Anúncios</a></li>
+            </ul>
+        </nav>
+
+        <h2 class="Titulo">Conecta Solidário</h2>
+    </header>
+
+    <!-- LOGIN -->
+    <main>
+        <div class="login_secundario">
+
+            <h2>Entrar</h2>
+
+            <input type="email" id="email" placeholder="E-mail">
+
+            <input type="password" id="senha" placeholder="Senha">
+
+            <button onclick="fazerLogin()">
+                Login
+            </button>
+
+            <p>Não possui cadastro?</p>
+
+            <a href="Cadastro.html">
+                Cadastre-se
+            </a>
+
+            <p id="mensagem-login"></p>
+
+        </div>
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer class="criador">
+        <h2 class="autor">
+            Criado por <span class="autor2">Diogo da Luz Rodrigues</span>
+        </h2>
+    </footer>
+
+    <script>
+
+        function fazerLogin() {
+
+            const email = document.getElementById("email").value.trim();
+            const senha = document.getElementById("senha").value;
+
+            const usuario = JSON.parse(localStorage.getItem("usuario"));
+
+            if (!usuario) {
+
+                document.getElementById("mensagem-login").innerHTML =
+                "❌ Nenhum usuário cadastrado!";
+
+                return;
+            }
+
+            if (email === "" || senha === "") {
+
+                document.getElementById("mensagem-login").innerHTML =
+                "❌ Preencha e-mail e senha!";
+
+                return;
+            }
+
+            if (
+                email === usuario.email &&
+                senha === usuario.senha
+            ) {
+
+                document.getElementById("mensagem-login").innerHTML =
+                "✅ Login realizado com sucesso!";
+
+                setTimeout(() => {
+                    window.location.href = "index.html";
+                }, 1500);
+
+            } else {
+
+                document.getElementById("mensagem-login").innerHTML =
+                "❌ E-mail ou senha incorretos!";
+            }
+        }
+
+    </script>
+
+</body>
+</html>
